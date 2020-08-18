@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import logoImg from '../../assets/images/logo.png'
 import locationIcon from '../../assets/images/icons/location.svg'
@@ -19,15 +20,15 @@ function Landing() {
                 <h2>Seja bem-vindo.</h2>
                 <h3>O que deseja fazer?</h3>
                 <div className="buttons-container">
-                    <a href="" className="leisure-points">
+                    <Link to="leisure-points" className="leisure-points">
                         <img src={locationIcon} alt="Pontos de lazer" />
                         <p>Encontrar pontos de lazer</p>
-                    </a>
+                    </Link>
 
-                    <a href="" className="utility-points">
+                    <Link to="utility-points" className="utility-points">
                         <img src={locationIcon} alt="Pontos de utilidades" /> 
                         <p>Encontrar pontos de utilidades</p>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
