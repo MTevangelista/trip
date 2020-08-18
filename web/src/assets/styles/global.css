@@ -57,4 +57,9 @@ textarea {
     :root {
         font-size: 63.5%;
     }
+
+    .container {
+        width: 90vw;
+        max-width: 700px;
+    }
 } 
