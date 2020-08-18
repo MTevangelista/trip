@@ -1,0 +1,24 @@
+{
+  "name": "trip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MTevangelista/trip.git",
+  "author": "Matheus Evangelista <matheusevangelistadev@gmail.com>",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "4.1.2",
+    "cz-conventional-changelog": "3.2.0",
+    "husky": "^4.2.5",
+    "init": "0.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
