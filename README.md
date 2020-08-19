@@ -20,6 +20,7 @@
   - [Feito Com](#feito-com)
 - [Começando](#come%C3%A7ando)
   - [Pré-requisitos](#pr%C3%A9-requisitos)
+  - [Estrutura de Arquivos](#estrutura-de-arquivos)
   - [Instalação](#instala%C3%A7%C3%A3o)
   - [Rode a API](#rode-a-api)
   - [Rode o projeto Web](#rode-o-projeto-web)
@@ -64,6 +65,51 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 - É **necessário** possuir o **[Node.js](https://nodejs.org/en/)** instalado no computador
 - É **necessário** possuir o **[Git](https://git-scm.com/)** instalado e configurado no computador
 - É **preciso** ter um gerenciador de pacotes seja o **[NPM](https://www.npmjs.com/)** ou **[Yarn](https://yarnpkg.com/)**.
+
+### Estrutura de Arquivos
+
+A estrutura de arquivos está da seguinte maneira:
+
+```bash
+trip
+├── web/  
+│   ├── public/
+│   │       └── index.html
+│   ├── src/
+│   │    ├── assets/
+│   │    │         ├── images/
+│   │    │                 ├── icons/
+│   │    │         │       └── logo.png
+│   │    │         ├── styles/
+│   │    │               └── global.css
+│   │    ├── components/
+│   │    │           ├── PageHeader/
+│   │    │                       ├── index.tsx
+│   │    │                       └── styles.css
+│   │    ├── pages/
+│   │    │      ├── Landing/
+│   │    │      │         ├── index.tsx
+│   │    │      │         └── styles.css
+│   │    │      ├── LeisurePoints/
+│   │    │      │              ├── index.tsx
+│   │    │      │              └── styles.css
+│   │    │      ├── UtilityPoints/
+│   │    │                    ├── index.tsx
+│   │    │                    └── styles.css
+│   │    ├── App.tsx
+│   │    ├── index.tsx
+│   │    ├── react-app-env-ts
+│   │    └── routes.tsx
+│   ├── .gitignore
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── yarn.lock
+│ 
+├── .gitignore
+├── package.json
+├── README.md
+└──yarn.lock
+```
 
 ### Instalação
 
