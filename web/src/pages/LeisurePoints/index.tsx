@@ -10,7 +10,7 @@ function LeisurePoints() {
     const [place, setPlace] = useState('');
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('')
-    
+
     return (
         <div id="page-leisure-points" className="container">
             <PageHeader pageTitle="Pontos de Lazer" title="Lugares encontrados">
@@ -43,12 +43,15 @@ function LeisurePoints() {
                         ]}
                     />
                     <Input
-                        type="time" 
+                        type="time"
                         name="time"
                         label="Hora"
                         value={time}
                         onChange={event => setTime(event.target.value)}
                     />
+                    <button type="submit">
+                        Buscar
+                    </button>
                 </form>
             </PageHeader>
         </div>
