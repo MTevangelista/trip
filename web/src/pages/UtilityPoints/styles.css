@@ -3,8 +3,28 @@
     height: 100vh;
 }
 
+#search-utility-places {
+    margin-top: 3.2rem;
+}
+
+#search-utility-places label {
+    color: var(--color-text-in-primary);
+}
+
 @media (min-width: 700px) {
     #page-utility-points {
         max-width: 100%;
+    }
+
+    #search-utility-places {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 16px;
+        position: absolute;
+        bottom: -28px;
+    }
+
+    #search-utility-places .select-block+.select-block {
+        margin-top: 0;
     }
 }

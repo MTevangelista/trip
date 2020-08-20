@@ -9,7 +9,6 @@ import './styles.css'
 interface PageHeaderProps {
     title: string;
     pageTitle: string;
-    totalPlaces: number;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {

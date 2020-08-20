@@ -3,8 +3,28 @@
     height: 100vh;
 }
 
+#search-leisure-places {
+    margin-top: 3.2rem;
+}
+
+#search-leisure-places label {
+    color: var(--color-text-in-primary);
+}
+
 @media (min-width: 700px) {
     #page-leisure-points {
         max-width: 100%;
+    }
+
+    #search-leisure-places {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 16px;
+        position: absolute;
+        bottom: -28px;
+    }
+
+    #search-leisure-places .select-block+.select-block {
+        margin-top: 0;
     }
 }
