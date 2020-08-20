@@ -25,7 +25,8 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 
             <div className="header-content">
                 <strong>{props.title}</strong>
-                <span>{props.totalPlaces} Lugares</span>
+
+                {props.children}
             </div>
         </header>
     )
