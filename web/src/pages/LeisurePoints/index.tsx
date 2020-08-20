@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import Select from '../../components/Select';
+import Input from '../../components/Input';
 
 import './styles.css'
 
 function LeisurePoints() {
     const [place, setPlace] = useState('');
     const [week_day, setWeekDay] = useState('');
+    const [time, setTime] = useState('')
     
     return (
         <div id="page-leisure-points" className="container">
@@ -39,6 +41,13 @@ function LeisurePoints() {
                             { value: '5', label: 'Sexta-feira' },
                             { value: '6', label: 'Sábado' },
                         ]}
+                    />
+                    <Input
+                        type="time" 
+                        name="time"
+                        label="Hora"
+                        value={time}
+                        onChange={event => setTime(event.target.value)}
                     />
                 </form>
             </PageHeader>

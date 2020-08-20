@@ -24,6 +24,7 @@
         bottom: -28px;
     }
 
+    #search-leisure-places .input-block+.input-block,
     #search-leisure-places .select-block+.select-block {
         margin-top: 0;
     }

@@ -24,6 +24,7 @@
         bottom: -28px;
     }
 
+    #search-utility-places .input-block+.input-block,
     #search-utility-places .select-block+.select-block {
         margin-top: 0;
     }
