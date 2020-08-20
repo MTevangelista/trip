@@ -49,6 +49,9 @@ function UtilityPoints() {
                         value={time}
                         onChange={event => setTime(event.target.value)} 
                     />
+                    <button type="submit">
+                        Buscar
+                    </button>
                 </form>
             </PageHeader>
         </div>
