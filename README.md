@@ -29,7 +29,7 @@
 
 ## Sobre o Projeto
 
-A proposta do projeto é uma aplicação que possa ajudar uma grande quantidade de visitantes de outros países e de outros estados chegam em alguma cidade para passar vários dias. Durante este tempo eles têm necessidade de encontrar restaurantes, bares, podem querer ir à praia, podem precisar registrar uma ocorrência policial ou ir a um hospital. Logo, O objetivo da plataforma é dar apoio a esta pessoa.
+A proposta do projeto é uma aplicação que possa ajudar uma grande quantidade de visitantes de outros países e de outros estados chegam em alguma cidade para passar vários dias. Durante este tempo eles têm necessidade de encontrar restaurantes, bares, podem querer ir à praia, podem precisar registrar uma ocorrência policial ou ir a um hospital. Logo, o objetivo da plataforma é dar apoio a esta pessoa.
 
 Na plataforma, o usuário pode buscar por:
 - Hospitais
@@ -78,14 +78,24 @@ trip
 │   ├── src/
 │   │    ├── assets/
 │   │    │         ├── images/
-│   │    │                 ├── icons/
+│   │    │         │       ├── icons/
 │   │    │         │       └── logo.png
-│   │    │         ├── styles/
+│   │    │         └── styles/
 │   │    │               └── global.css
 │   │    ├── components/
+│   │    │           ├── Input/
+│   │    │           │      ├── index.tsx
+│   │    │           │      └── styles.css
+│   │    │           │       
 │   │    │           ├── PageHeader/
-│   │    │                       ├── index.tsx
-│   │    │                       └── styles.css
+│   │    │           │           ├── index.tsx
+│   │    │           │           └── styles.css      
+│   │    │           ├── PageCard/
+│   │    │           │         ├── index.tsx
+│   │    │           │         └── styles.css      
+│   │    │           └── Select/
+│   │    │                   ├── index.tsx
+│   │    │                   └── styles.css      
 │   │    ├── pages/
 │   │    │      ├── Landing/
 │   │    │      │         ├── index.tsx
@@ -93,7 +103,7 @@ trip
 │   │    │      ├── LeisurePoints/
 │   │    │      │              ├── index.tsx
 │   │    │      │              └── styles.css
-│   │    │      ├── UtilityPoints/
+│   │    │      └── UtilityPoints/
 │   │    │                    ├── index.tsx
 │   │    │                    └── styles.css
 │   │    ├── App.tsx
