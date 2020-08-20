@@ -32,6 +32,11 @@
     background: var(--color-secundary-dark);
 }
 
+#page-utility-points main {
+    margin: 3.2rem auto;
+    width: 90%;
+}
+
 @media (min-width: 700px) {
     #page-utility-points {
         max-width: 100%;
@@ -48,5 +53,11 @@
     #search-utility-places .input-block+.input-block,
     #search-utility-places .select-block+.select-block {
         margin-top: 0;
+    }
+
+    #page-utility-points main {
+        padding: 3.2rem 0;
+        max-width: 740px;
+        margin: 0 auto;
     }
 }

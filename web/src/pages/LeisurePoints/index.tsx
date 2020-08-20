@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
+import PlaceCard from '../../components/PlaceCard';
 
 import './styles.css'
 
@@ -54,6 +55,11 @@ function LeisurePoints() {
                     </button>
                 </form>
             </PageHeader>
+
+            <main>
+                <PlaceCard />
+                <PlaceCard />
+            </main>
         </div>
     )
 }

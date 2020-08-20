@@ -28,8 +28,13 @@
     margin-top: 3.2rem;
 }
 
-#search-leisure-teachers button:hover {
+#search-leisure-places button:hover {
     background: var(--color-secundary-dark);
+}
+
+#page-leisure-points main {
+    margin: 3.2rem auto;
+    width: 90%;
 }
 
 @media (min-width: 700px) {
@@ -48,5 +53,11 @@
     #search-leisure-places .input-block+.input-block,
     #search-leisure-places .select-block+.select-block {
         margin-top: 0;
+    }
+
+    #page-leisure-points main {
+        padding: 3.2rem 0;
+        max-width: 740px;
+        margin: 0 auto;
     }
 }
