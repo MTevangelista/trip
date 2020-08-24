@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios'
 
 import PageHeader from "../../components/PageHeader";
 import Select from "../../components/Select";
@@ -7,15 +8,66 @@ import PlaceCard from "../../components/PlaceCard";
 
 import './styles.css'
 
+interface IBGEUFResponse {
+    sigla: string
+}
+
+interface IBGECityResponse {
+    nome: string
+}
+
 function UtilityPoints() {
+    const [ufs, setUfs] = useState<string[]>([])
+    const [cities, setCities] = useState<string[]>([])
+    const [selectedUf, setSelectedUf] = useState('')
+    const [selectedCity, setSelectedCity] = useState('')
     const [place, setPlace] = useState('');
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('')
-    
+
+    // Loads the IBGE API UFS
+    useEffect(() => {
+        axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+            const ufInitials = response.data.map(uf => uf.sigla)
+            console.log(ufInitials);
+            setUfs(ufInitials)
+        })
+    }, [])
+
+    // Loads the IBGE API cities
+    useEffect(() => {
+        if (selectedUf === '0') {
+            return
+        }
+        axios.get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`).then(response => {
+            const cityNames = response.data.map(city => city.nome)
+
+            setCities(cityNames)
+        })
+    }, [selectedUf])
+
     return (
         <div id="page-utility-points" className="container">
             <PageHeader pageTitle="Pontos de Utilidades" title="Lugares encontrados">
                 <form id="search-utility-places">
+                    <Select
+                        name="uf"
+                        label="Estado (UF)"
+                        value={selectedUf}
+                        onChange={event => setSelectedUf(event.target.value)}
+                        options={ufs.map(uf => (
+                            { value: `${uf}`, label: `${uf}` }
+                        ))}
+                    />
+                    <Select
+                        name="city"
+                        label="Cidade"
+                        value={selectedCity}
+                        onChange={event => setSelectedCity(event.target.value)}
+                        options={cities.map(city => (
+                            { value: `${city}`, label: `${city}` }
+                        ))}
+                    />
                     <Select
                         name="place"
                         label="Lugar"
@@ -48,7 +100,7 @@ function UtilityPoints() {
                         name="time"
                         label="Hora"
                         value={time}
-                        onChange={event => setTime(event.target.value)} 
+                        onChange={event => setTime(event.target.value)}
                     />
                     <button type="submit">
                         Buscar
