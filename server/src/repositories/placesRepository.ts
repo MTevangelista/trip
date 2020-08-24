@@ -3,9 +3,39 @@ import db from '../database/connection'
 import convertHourToMinutes from '../utils/convertHourToMinutes'
 
 interface ScheduleItem {
-    week_day: number,
-    from: string,
-    to: string
+    week_day: number;
+    from: string;
+    to: string;
+}
+
+interface filtersItem {
+    week_day: string;
+    place: string;
+    time: string;
+}
+
+exports.getAll = async(filters: filtersItem) => {
+    const week_day = filters.week_day 
+    const place = filters.place
+    const time = filters.time
+
+    const timeInMinutes = convertHourToMinutes(time)
+
+    const places = await db('places')
+        .whereExists(function () {
+            this.select('place_schedule.*')
+                .from('place_schedule')
+                .whereRaw('`place_schedule`.`place_id` = `places`.`id`')
+                .whereRaw('`place_schedule`.`week_day` = ??', [Number(week_day)])
+                .whereRaw('`place_schedule`.`from` <= ??', [timeInMinutes])
+                .whereRaw('`place_schedule`.`to` > ??', [timeInMinutes])
+        })
+        .where('places.place', '=', place)
+        .where('place_schedule.week_day', '=', week_day)
+        .join('place_schedule', 'places.id', '=', 'place_schedule.place_id')
+        .select(['places.*', 'place_schedule.from', 'place_schedule.to'])
+    
+    return places
 }
 
 exports.create = async(name: string, avatar: string, place: string, address: string, whatsapp: string, bio: string, schedule: any) => {
