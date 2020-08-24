@@ -10,6 +10,10 @@
   <img src="https://img.shields.io/badge/VSCode-v1.43.2-blue" />
   <img src="https://img.shields.io/badge/Yarn-v1.22.4-lightblue" />
   <img src="https://img.shields.io/badge/Typescript-v3.7.2-blue" />  
+  <img src="https://img.shields.io/badge/NodeJs-v12.16.2-green" />
+  <img src="https://img.shields.io/badge/Express-v4.17.1-lightgrey" />
+  <img src="https://img.shields.io/badge/SQLite3-v5.0.0-blue" />
+  <img src="https://img.shields.io/badge/Knex-v0.21.5-orange" />
   <img src="https://img.shields.io/badge/React-v16.13.1-lightblue" />
 </p>
 
@@ -52,6 +56,14 @@ Abaixo segue o que foi utilizado na criação deste projeto:
 - [Yarn](https://yarnpkg.com/) - Yarn é um gerenciador de pacotes que também atua como gerente de projeto. Quer você trabalhe em projetos únicos ou grandes monorepos, como um aquarista ou um usuário corporativo, temos o que você precisa.
 
 - [Typescript](https://www.typescriptlang.org/) - TypeScript é um superconjunto de JavaScript desenvolvido pela Microsoft que adiciona tipagem e alguns outros recursos a linguagem. Anders Hejlsberg, arquiteto da linguagem C# e criador das linguagens Delphi e Turbo Pascal, trabalhou no desenvolvimento do TypeScript.
+
+- [Node.js](https://nodejs.org/en/) - Node.js é um interpretador de JavaScript assíncrono com código aberto orientado a eventos, criado por Ryan Dahl em 2009, focado em migrar a programação do Javascript do cliente (frontend) para os servidores, criando aplicações de alta escalabilidade (como um servidor web), manipulando milhares de conexões/eventos simultâneas em tempo real numa única máquina física.
+
+- [Express](https://expressjs.com/pt-br/) - O Express.js, ou simplesmente o Express, é uma estrutura de aplicativo da Web para o Node.js, lançada como software livre e de código aberto sob a Licença MIT. Ele foi projetado para criar aplicativos da Web e APIs. Foi chamado de estrutura de servidor padrão de fato para o Node.js.
+
+- [SQLite](https://www.sqlite.org/index.html) - SQLite é uma biblioteca em linguagem C que implementa um banco de dados SQL embutido. Programas que usam a biblioteca SQLite podem ter acesso a banco de dados SQL sem executar um processo SGBD separado.
+
+- [Knex](http://knexjs.org/) - Knex.js é um criador de consultas SQL com "baterias incluídas" para Postgres, MySQL, MariaDB, SQLite3 e Oracle, projetado para ser flexível, portátil e divertido de usar. Ele apresenta retornos de chamada de estilo de nó tradicional, bem como uma interface de promessa para controle de fluxo assíncrono mais limpo, uma interface de fluxo, consulta com recursos completos e construtores de esquema, suporte a transações (com pontos de salvamento), pool de conexão e respostas padronizadas entre diferentes clientes de consulta e dialetos.
 
 - [React](https://pt-br.reactjs.org/) - O React é uma biblioteca JavaScript de código aberto com foco em criar interfaces de usuário em páginas web. É mantido pelo Facebook, Instagram, outras empresas e uma comunidade de desenvolvedores individuais. É utilizado nos sites da Netflix, Imgur, Feedly, Airbnb, SeatGeek, HelloSign, Walmart e outros.
 
