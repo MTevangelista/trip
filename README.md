@@ -126,7 +126,29 @@ trip
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── yarn.lock
-│ 
+│
+├── server/
+│   ├── src/
+│   │    ├── controllers/
+│   │    │            └── PlacesController.ts  
+│   │    ├── database/
+│   │    │         ├── migrations/
+│   │    │         │           ├── 00_create_places.ts
+│   │    │         │           └── 01_create_place_schedule.ts
+│   │    │         ├── connection.ts
+│   │    │         └── database.sqlite
+│   │    ├── repositories/
+│   │    │             └── placesRepository.ts   
+│   │    ├── routes/
+│   │    │       └── place-route.ts
+│   │    ├── utils/
+│   │    │      └── convertHourToMinutes.ts
+│   │    └── server.ts
+│   ├── .gitignore
+│   ├── knexfile.ts
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── yarn.lock
 ├── .gitignore
 ├── package.json
 ├── README.md
@@ -144,7 +166,18 @@ $ git clone https://github.com/MTevangelista/trip.git
 
 ### Rode a API
 
-🚧 Em construção... 🚧
+```bash
+# Vá para a pasta do servidor
+$ cd trip/server
+
+# Instale as depedencias
+$ yarn install ou npm install
+
+# Rode a aplicação
+$ yarn start ou npm run start
+
+# O servidor inciará na porta: 3333 - acesse http://localhost:3333 
+```
 
 ### Rode o projeto Web
 
@@ -180,3 +213,4 @@ Contribuições são o que fazem a comunidade open source um lugar incrível par
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=round-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/matheus01/)](https://www.linkedin.com/in/matheus01/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=round-square&logo=Gmail&logoColor=white&link=mailto:matheusevangelistadev@gmail.com)](mailto:matheusevangelistadev@gmail.com)
 [![Instagram Badge](https://img.shields.io/badge/-Instagram-ba164a?style=round-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/_matheusrj/?hl=pt-br)](https://www.instagram.com/_matheusrj/?hl=pt-br)
+
