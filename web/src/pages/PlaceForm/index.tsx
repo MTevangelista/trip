@@ -1,10 +1,215 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
+
+import PageHeader from '../../components/PageHeader';
+import Input from '../../components/Input';
+import Textarea from '../../components/Textarea';
+import Select from '../../components/Select';
+
+import warningIcon from '../../assets/images/icons/warning.svg'
 
 import './styles.css'
 
+interface IBGEUFResponse {
+    sigla: string
+}
+
+interface IBGECityResponse {
+    nome: string
+}
+
 function PlaceForm() {
+    const [ufs, setUfs] = useState<string[]>([])
+    const [cities, setCities] = useState<string[]>([])
+    const [selectedUf, setSelectedUf] = useState('')
+    const [selectedCity, setSelectedCity] = useState('')
+    const [name, setName] = useState('')
+    const [image_url, setImageUrl] = useState('')
+    const [address, setAddress] = useState('')
+    const [whatsapp, setWhatsapp] = useState('')
+    const [bio, setBio] = useState('')
+    const [place, setPlace] = useState('');
+    const [scheduleItems, setScheduleItems] = useState([
+        { week_day: 0, from: '', to: '' }
+    ])
+
+    // Loads the IBGE API UFS
+    useEffect(() => {
+        axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
+            const ufInitials = response.data.map(uf => uf.sigla)
+            setUfs(ufInitials)
+        })
+    }, [])
+
+    // Loads the IBGE API cities
+    useEffect(() => {
+        if (selectedUf === '0') {
+            return
+        }
+        axios.get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`).then(response => {
+            const cityNames = response.data.map(city => city.nome)
+            setCities(cityNames)
+        })
+    }, [selectedUf])
+
+    function addNewScheduleItem() {
+        setScheduleItems([
+            ...scheduleItems,
+            { week_day: 0, from: '', to: '' }
+        ])
+        scheduleItems.push()
+    }
+
+    function setScheduleItemValue(position: number, field: string, value: string) {
+        const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
+            if (index === position) {
+                return { ...scheduleItem, [field]: value }
+            }
+
+            return scheduleItem
+        })
+        setScheduleItems(updatedScheduleItems)
+    }
+
+
     return (
-        <h1>Cadastrar lugar</h1>
+        <div id="page-place-form" className="container">
+            <PageHeader
+                pageTitle="Cadastrar Lugar"
+                title="Cadastre um lugar na plataforma"
+                description="O primeiro passo é preencher esse formulário de cadastro"
+            />
+
+            <main>
+                <form>
+                    <fieldset>
+                        <legend>Seus dados</legend>
+
+                        <Input
+                            name="name"
+                            label="Nome do lugar"
+                            value={name}
+                            onChange={event => setName(event.target.value)}
+                        />
+                        <Input
+                            name="image_url"
+                            label="Image (URL)"
+                            value={image_url}
+                            onChange={event => setImageUrl(event.target.value)}
+                        />
+                        <Input
+                            name="address"
+                            label="Endereço"
+                            value={address}
+                            onChange={event => setAddress(event.target.value)}
+                        />
+                        <Input
+                            name="whatsapp"
+                            label="WhatsApp"
+                            value={whatsapp}
+                            onChange={event => setWhatsapp(event.target.value)}
+                        />
+                        <Textarea
+                            name="bio"
+                            label="Biografia"
+                            value={bio}
+                            onChange={event => setBio(event.target.value)}
+                        />
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Sobre o lugar</legend>
+
+                        <Select
+                            name="uf"
+                            label="Estado (UF)"
+                            value={selectedUf}
+                            onChange={event => setSelectedUf(event.target.value)}
+                            options={ufs.map(uf => (
+                                { value: `${uf}`, label: `${uf}` }
+                            ))}
+                        />
+                        <Select
+                            name="city"
+                            label="Cidade"
+                            value={selectedCity}
+                            onChange={event => setSelectedCity(event.target.value)}
+                            options={cities.map(city => (
+                                { value: `${city}`, label: `${city}` }
+                            ))}
+                        />
+                        <Select
+                            name="place"
+                            label="Lugar"
+                            value={place}
+                            onChange={event => setPlace(event.target.value)}
+                            options={[
+                                { value: 'Eventos', label: 'Eventos' },
+                                { value: 'Praias', label: 'Praias' },
+                                { value: 'Pontos turísticos', label: 'Pontos turísticos' },
+                                { value: 'Onde comer', label: 'Onde comer' },
+                                { value: 'Banheiros', label: 'Banheiros' },
+                                { value: 'Delegacias', label: 'Delegacias' },
+                                { value: 'Hospitais', label: 'Hospitais' },
+                                { value: 'Onde dormir', label: 'Onde dormir' },
+                            ]}
+                        />
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>
+                            Horários disponíveis
+                        <button type="button" onClick={addNewScheduleItem}>+ Novo horário</button>
+                        </legend>
+
+                        {scheduleItems.map((scheduleItem, index) => {
+                            return (
+                                <div key={scheduleItem.week_day} className="schedule-item">
+                                    <Select
+                                        name="week-day"
+                                        label="Dia da semana"
+                                        value={scheduleItem.week_day}
+                                        onChange={event => setScheduleItemValue(index, 'week_day', event.target.value)}
+                                        options={[
+                                            { value: '0', label: 'Domingo' },
+                                            { value: '1', label: 'Segunda-feira' },
+                                            { value: '2', label: 'Terça-feira' },
+                                            { value: '3', label: 'Quarta-feira' },
+                                            { value: '4', label: 'Quinta-feira' },
+                                            { value: '5', label: 'Sexta-feira' },
+                                            { value: '6', label: 'Sábado' },
+                                        ]}
+                                    />
+                                    <Input
+                                        type="time"
+                                        name="from"
+                                        label="Das"
+                                        value={scheduleItem.from}
+                                        onChange={event => setScheduleItemValue(index, 'from', event.target.value)}
+                                    />
+                                    <Input
+                                        type="time"
+                                        name="to"
+                                        label="Até"
+                                        value={scheduleItem.to}
+                                        onChange={event => setScheduleItemValue(index, 'to', event.target.value)}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </fieldset>
+
+                    <footer>
+                        <p>
+                            <img src={warningIcon} alt="Aviso importante" />
+                        Importante! <br />
+                        Preencha todos os dados
+                    </p>
+                        <button type="submit">Salvar cadastro</button>
+                    </footer>
+                </form>
+            </main>
+        </div>
     )
 }
 
