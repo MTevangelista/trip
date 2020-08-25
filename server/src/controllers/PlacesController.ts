@@ -6,7 +6,7 @@ export default class PlacesController {
     async index(req: Request, res: Response) {
         const filters = req.query
 
-        if (!filters.week_day || !filters.place || !filters.time) {
+        if (!filters.uf || !filters.city || !filters.week_day || !filters.place || !filters.time) {
             res.status(400).json({
                 error: 'Missing filters to search places'
             })
@@ -16,7 +16,6 @@ export default class PlacesController {
             let places = await repository.getAll(filters)
             return res.json(places)
         } catch (e) {
-            console.log(e);
             return res.status(400).json({
                 error: 'Unexpected error while listing all places'
             })
@@ -24,7 +23,7 @@ export default class PlacesController {
     }
 
     async create(req: Request, res: Response) {
-        const { name, avatar, place, address, whatsapp, bio, schedule } = req.body
+        const { name, avatar, place, address, whatsapp, bio, information } = req.body
 
         try {
             await repository.create(
@@ -34,7 +33,7 @@ export default class PlacesController {
                 address,
                 whatsapp,
                 bio,
-                schedule
+                information
             )
             return res.status(201).send()
         } catch (e) {
