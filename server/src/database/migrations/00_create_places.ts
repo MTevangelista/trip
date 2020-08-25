@@ -4,7 +4,7 @@ export async function up(knex: Knex) {
     return knex.schema.createTable('places', table => {
         table.increments('id').primary()
         table.string('name').notNullable()
-        table.string('avatar').notNullable()
+        table.string('image_url').notNullable()
         table.string('place').notNullable()
         table.string('address').notNullable()
         table.string('whatsapp').notNullable()

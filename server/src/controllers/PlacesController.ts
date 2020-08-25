@@ -23,12 +23,12 @@ export default class PlacesController {
     }
 
     async create(req: Request, res: Response) {
-        const { name, avatar, place, address, whatsapp, bio, information } = req.body
+        const { name, image_url, place, address, whatsapp, bio, information } = req.body
 
         try {
             await repository.create(
                 name,
-                avatar,
+                image_url,
                 place,
                 address,
                 whatsapp,

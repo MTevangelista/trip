@@ -46,13 +46,13 @@ exports.getAll = async(filters: FiltersItem) => {
     return places
 }
 
-exports.create = async(name: string, avatar: string, place: string, address: string, whatsapp: string, bio: string, information: any) => {
+exports.create = async(name: string, image_url: string, place: string, address: string, whatsapp: string, bio: string, information: any) => {
     const trx = await db.transaction()
 
     try {
         const insertedPlacesIds = await trx('places').insert({
             name,
-            avatar,
+            image_url,
             place,
             address,
             whatsapp,
