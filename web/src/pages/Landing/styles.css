@@ -1,11 +1,6 @@
 #page-landing {
     width: 100vw;
     height: 100vh;
-
-    /* display: grid;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; */
 }
 
 #page-landing-top-content {
@@ -17,7 +12,7 @@
     background: var(--color-primary);
 
     width: 100%;
-    height: 45%;
+    height: 42%;
 }
 
 .logo-container img {
@@ -28,6 +23,7 @@
     font-weight: 500;
     font-size: 1.2rem;
     margin: 0.5rem 0 0 1.2rem;
+    text-align: start;
 }
 
 #page-landing-bottom-content {
@@ -36,7 +32,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 45%;
+    height: 53%;
 
     background: var(--color-background);
 }
@@ -102,9 +98,25 @@
     background: var(--color-secundary-dark);
 }
 
+.register-place {
+    padding: 0.5rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 0.8rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.register-place:hover {
+    opacity: 0.6;
+}
+
 @media (min-width: 700px) {
     #page-landing-top-content {
-        height: 60%;
+        height: 56%;
         max-width: 100%;
     }
 
