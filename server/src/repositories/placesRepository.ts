@@ -16,7 +16,15 @@ interface FiltersItem {
     time: string;
 }
 
-exports.getAll = async(filters: FiltersItem) => {
+exports.index = async() => {
+    const places = await db('places')
+        .join('place_schedule', 'places.id', '=', 'place_schedule.place_id')
+        .select('places.*', 'place_schedule.week_day', 'place_schedule.from', 'place_schedule.to')
+    
+    return places
+}
+
+exports.getAllByFilters = async(filters: FiltersItem) => {
     const uf = filters.uf
     const city = filters.city
     const week_day = filters.week_day 

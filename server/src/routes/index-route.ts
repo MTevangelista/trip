@@ -4,7 +4,6 @@ import PlacesController from '../controllers/PlacesController'
 const route = express.Router()
 const placesController = new PlacesController()
 
-route.get('/', placesController.getAllByFilters)
-route.post('/', placesController.create)
+route.get('/', placesController.index)
 
 export default route
