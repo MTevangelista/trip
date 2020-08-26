@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios'
 
 import PageHeader from '../../components/PageHeader';
@@ -7,6 +7,8 @@ import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
 import warningIcon from '../../assets/images/icons/warning.svg'
+
+import api from '../../services/api'
 
 import './styles.css'
 
@@ -71,6 +73,25 @@ function PlaceForm() {
         setScheduleItems(updatedScheduleItems)
     }
 
+    function handleCreatePlace(event: FormEvent) { 
+        event.preventDefault()
+
+        api.post('/places', {
+            name,
+            image_url,
+            place,
+            address,
+            whatsapp,
+            bio,
+            uf: selectedUf,
+            city: selectedCity,
+            schedule: scheduleItems
+        }).then(() => {
+            alert('Cadastro realizado com sucesso!')
+        }).catch(() => {
+            alert('Erro no cadastro')
+        })
+    }
 
     return (
         <div id="page-place-form" className="container">
@@ -81,7 +102,7 @@ function PlaceForm() {
             />
 
             <main>
-                <form>
+                <form onSubmit={handleCreatePlace}>
                     <fieldset>
                         <legend>Seus dados</legend>
 
