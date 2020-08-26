@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import axios from 'axios'
 
 import PageHeader from "../../components/PageHeader";
 import Select from "../../components/Select";
 import Input from "../../components/Input";
-import PlaceCard from "../../components/PlaceCard";
+import PlaceCard, { Place } from "../../components/PlaceCard";
+
+import api from '../../services/api'
 
 import './styles.css'
 
@@ -16,7 +18,9 @@ interface IBGECityResponse {
     nome: string
 }
 
-function UtilityPoints() {
+const UtilityPoints: React.FC = () => {
+    const [places, setPlaces] = useState([])
+
     const [ufs, setUfs] = useState<string[]>([])
     const [cities, setCities] = useState<string[]>([])
     const [selectedUf, setSelectedUf] = useState('')
@@ -29,7 +33,7 @@ function UtilityPoints() {
     useEffect(() => {
         axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
             const ufInitials = response.data.map(uf => uf.sigla)
-            console.log(ufInitials);
+
             setUfs(ufInitials)
         })
     }, [])
@@ -46,10 +50,26 @@ function UtilityPoints() {
         })
     }, [selectedUf])
 
+    async function searchPlaces(event: FormEvent) {
+        event.preventDefault()
+
+        const response = await api.get('places', {
+            params: {
+                uf: selectedUf,
+                city: selectedCity,
+                place,
+                week_day,
+                time
+            }
+        })
+
+        setPlaces(response.data)
+    }
+
     return (
         <div id="page-utility-points" className="container">
             <PageHeader pageTitle="Pontos de Utilidades" title="Lugares encontrados">
-                <form id="search-utility-places">
+                <form id="search-utility-places" onSubmit={searchPlaces}>
                     <Select
                         name="uf"
                         label="Estado (UF)"
@@ -109,8 +129,9 @@ function UtilityPoints() {
             </PageHeader>
 
             <main>
-                <PlaceCard />
-                <PlaceCard />
+                {places.map((place: Place) => {
+                    return <PlaceCard key={place.id} place={place} />
+                })}
             </main>
         </div>
     );

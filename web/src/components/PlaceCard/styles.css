@@ -41,6 +41,10 @@
     align-items: center;
 }
 
+.place-card-content + .place-card-content {
+    margin-top: 1rem;
+}
+
 .place-card-content img {
     width: 3.2rem;
     height: 3.2rem;

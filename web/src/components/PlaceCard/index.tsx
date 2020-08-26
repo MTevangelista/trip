@@ -2,28 +2,50 @@ import React from 'react'
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import markerIcon from '../../assets/images/icons/marker.svg'
+import wallClockIcon from '../../assets/images/icons/wall-clock.svg'
 
 import './styles.css'
 
-function PlaceCard() {
+export interface Place {
+    id: number,
+    name: string,
+    image_url: string,
+    place: string,
+    address: string,
+    whatsapp: string,
+    bio: string,
+    uf: string,
+    city: string,
+    from: number,
+    to: number
+}
+
+interface PlaceCardProps {
+    place: Place
+}
+
+const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
     return (
         <article className="place-card">
             <header>
-                <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg" alt="Pizzaiolo" />
+                <img src={place.image_url} alt="Pizzaiolo" />
                 <div>
-                    <strong>Pizzaiolo</strong>
-                    <span>Restaurante</span>
+                    <strong>{place.name}</strong>
+                    <span>{place.place}</span>
                 </div>
             </header>
 
             <div className="place-card-content">
                 <img src={markerIcon} alt="Endereço"/>
-                <strong>Rua são josé, 90 - Rio de Janeiro</strong>
+                <strong>{place.address} - {place.city}</strong>
             </div>
 
-            <p>
-                O pizzaioloo possui o mehlor rodízio da região. Mais de 1000 pessoas já comeram no nosso restaurante. Com uma vista deslumbrante sobre o mar é o local ideal para o seu almoço no Brasil.
-            </p>
+            <div className="place-card-content">
+                <img src={wallClockIcon} alt="Horário"/>
+                <strong>Das {place.from} às {place.to}</strong>
+            </div>
+
+            <p>{place.bio}</p>
 
             <footer>
                 <a>

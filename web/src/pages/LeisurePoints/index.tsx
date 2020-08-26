@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios'
 
 import PageHeader from '../../components/PageHeader';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import PlaceCard from '../../components/PlaceCard';
+import PlaceCard, { Place } from '../../components/PlaceCard';
+
+import api from '../../services/api'
 
 import './styles.css'
 
@@ -16,7 +18,9 @@ interface IBGECityResponse {
     nome: string
 }
 
-function LeisurePoints() {
+const LeisurePoints: React.FC = () => {
+    const [places, setPlaces] = useState([])
+
     const [ufs, setUfs] = useState<string[]>([])
     const [cities, setCities] = useState<string[]>([])
     const [selectedUf, setSelectedUf] = useState('')
@@ -44,10 +48,26 @@ function LeisurePoints() {
         })
     }, [selectedUf])
 
+    async function searchPlaces(event: FormEvent) {
+        event.preventDefault()
+
+        const response = await api.get('places', {
+            params: {
+                uf: selectedUf,
+                city: selectedCity,
+                place,
+                week_day,
+                time
+            }
+        })
+
+        setPlaces(response.data)
+    }
+
     return (  
         <div id="page-leisure-points" className="container">
             <PageHeader pageTitle="Pontos de Lazer" title="Lugares encontrados">
-                <form id="search-leisure-places">
+                <form id="search-leisure-places" onSubmit={searchPlaces}>
                     <Select
                         name="uf"
                         label="Estado (UF)"
@@ -107,8 +127,9 @@ function LeisurePoints() {
             </PageHeader>
 
             <main>
-                <PlaceCard />
-                <PlaceCard />
+                {places.map((place: Place) => {
+                    return <PlaceCard key={place.id} place={place} />
+                })}
             </main>
         </div>
     )
