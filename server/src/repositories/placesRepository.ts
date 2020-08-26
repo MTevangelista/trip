@@ -2,9 +2,7 @@ import db from '../database/connection'
 
 import convertHourToMinutes from '../utils/convertHourToMinutes'
 
-interface InformationItem {
-    uf: string;
-    city: string;
+interface ScheduleItem {
     week_day: number;
     from: string;
     to: string;
@@ -29,24 +27,24 @@ exports.getAll = async(filters: FiltersItem) => {
 
     const places = await db('places')
         .whereExists(function () {
-            this.select('place_information.*')
-                .from('place_information')
-                .whereRaw('`place_information`.`place_id` = `places`.`id`')
-                .whereRaw('`place_information`.`week_day` = ??', [Number(week_day)])
-                .whereRaw('`place_information`.`from` <= ??', [timeInMinutes])
-                .whereRaw('`place_information`.`to` > ??', [timeInMinutes])
+            this.select('place_schedule.*')
+                .from('place_schedule')
+                .whereRaw('`place_schedule`.`place_id` = `places`.`id`')
+                .whereRaw('`place_schedule`.`week_day` = ??', [Number(week_day)])
+                .whereRaw('`place_schedule`.`from` <= ??', [timeInMinutes])
+                .whereRaw('`place_schedule`.`to` > ??', [timeInMinutes])
         })
         .where('places.place', '=', place)
-        .where('place_information.uf', '=', uf)
-        .where('place_information.city', '=', city)
-        .where('place_information.week_day', '=', week_day)
-        .join('place_information', 'places.id', '=', 'place_information.place_id')
-        .select(['places.*', 'place_information.uf', 'place_information.city', 'place_information.from', 'place_information.to'])
+        .where('places.uf', '=', uf)
+        .where('places.city', '=', city)
+        .where('place_schedule.week_day', '=', week_day)
+        .join('place_schedule', 'places.id', '=', 'place_schedule.place_id')
+        .select(['places.*', 'place_schedule.from', 'place_schedule.to'])
     
     return places
 }
 
-exports.create = async(name: string, image_url: string, place: string, address: string, whatsapp: string, bio: string, information: any) => {
+exports.create = async(name: string, image_url: string, place: string, address: string, whatsapp: string, bio: string, uf: string, city: string, schedule: Array<ScheduleItem>) => {
     const trx = await db.transaction()
 
     try {
@@ -57,22 +55,22 @@ exports.create = async(name: string, image_url: string, place: string, address: 
             address,
             whatsapp,
             bio,
+            uf,
+            city
         })
 
         const place_id = insertedPlacesIds[0]
 
-        const placeInformation = information.map((informationItem: InformationItem) => {
+        const placeSchedule = schedule.map((scheduleItem: ScheduleItem) => {
             return {
                 place_id,
-                uf: informationItem.uf,
-                city: informationItem.city,
-                week_day: informationItem.week_day,
-                from: convertHourToMinutes(informationItem.from),
-                to: convertHourToMinutes(informationItem.to)
+                week_day: scheduleItem.week_day,
+                from: convertHourToMinutes(scheduleItem.from),
+                to: convertHourToMinutes(scheduleItem.to)
             }
         })
 
-        await trx('place_information').insert(placeInformation)
+        await trx('place_schedule').insert(placeSchedule)
 
         await trx.commit()
     } catch (e) {

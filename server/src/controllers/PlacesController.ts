@@ -16,6 +16,7 @@ export default class PlacesController {
             let places = await repository.getAll(filters)
             return res.json(places)
         } catch (e) {
+            console.log(e);
             return res.status(400).json({
                 error: 'Unexpected error while listing all places'
             })
@@ -23,7 +24,7 @@ export default class PlacesController {
     }
 
     async create(req: Request, res: Response) {
-        const { name, image_url, place, address, whatsapp, bio, information } = req.body
+        const { name, image_url, place, address, whatsapp, bio, uf, city, schedule } = req.body
 
         try {
             await repository.create(
@@ -33,7 +34,9 @@ export default class PlacesController {
                 address,
                 whatsapp,
                 bio,
-                information
+                uf,
+                city,
+                schedule
             )
             return res.status(201).send()
         } catch (e) {
