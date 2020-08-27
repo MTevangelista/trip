@@ -41,12 +41,12 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
             </header>
 
             <div className="place-card-content">
-                <img src={markerIcon} alt="Endereço"/>
+                <img src={markerIcon} alt="Endereço" />
                 <strong>{place.address} - {place.city}</strong>
             </div>
 
             <div className="place-card-content">
-                <img src={wallClockIcon} alt="Horário"/>
+                <img src={wallClockIcon} alt="Horário" />
                 <strong>Das {timeInHourFrom} às {timeInHourTo}</strong>
             </div>
 
@@ -56,10 +56,19 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                 <a>
                     Calcular rota
                 </a>
-                <button type="submit">
+                <a
+                    className="whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`https://wa.me/${place.whatsapp}`}
+                >
+                    <img src={whatsappIcon} alt="WhatsApp" />
+                    Entrar em contato
+                </a>
+                {/* <button type="submit">
                     <img src={whatsappIcon} alt="Whatsapp" />
                     Entrar em contato
-                </button>
+                </button> */}
             </footer>
         </article>
     )

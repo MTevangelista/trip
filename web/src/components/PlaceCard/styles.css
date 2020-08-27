@@ -88,13 +88,15 @@
     opacity: 0.6;
 }
 
-.place-card footer button {
+.place-card footer .whatsapp {
     width: 10rem;
     height: 5.6rem;
     background: var(--color-secundary);
     color: var(--color-button-text);
     border-radius: 0.8rem;
     cursor: pointer;
+    text-decoration: none;
+    border: none;
     font: 700 1.4rem Archivo;
     display: flex;
     align-items: center;
@@ -102,18 +104,18 @@
     transition: 0.2s;
 }
 
-.place-card footer button:hover {
+.place-card footer .whatsapp:hover {
     background: var(--color-secundary-dark);
 }
 
 @media (min-width: 350px) {
-    .place-card footer button {
+    .place-card footer .whatsapp {
         width: 14.5rem;
         font-size: 1.2rem;
         justify-content: center;
     }
 
-    .place-card footer button img {
+    .place-card footer .whatsapp img {
         margin-right: 0.5rem;
     }
 }
@@ -133,13 +135,13 @@
         margin-left: 1.6rem;
     }
 
-    .place-card footer button {
+    .place-card footer .whatsapp {
         width: 24.5rem;
         font-size: 1.6rem;
         justify-content: center;
     }
 
-    .place-card footer button img {
+    .place-card footer .whatsapp img {
         margin-right: 1.6rem;
     }
 } 
