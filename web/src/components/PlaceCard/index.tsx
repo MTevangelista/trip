@@ -1,5 +1,7 @@
 import React from 'react'
 
+import convertMinutesToHours from '../../utils/convertMinutesToHours'
+
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 import markerIcon from '../../assets/images/icons/marker.svg'
 import wallClockIcon from '../../assets/images/icons/wall-clock.svg'
@@ -25,6 +27,9 @@ interface PlaceCardProps {
 }
 
 const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
+    const timeInHourFrom = convertMinutesToHours(place.from)
+    const timeInHourTo = convertMinutesToHours(place.to)
+
     return (
         <article className="place-card">
             <header>
@@ -42,7 +47,7 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
 
             <div className="place-card-content">
                 <img src={wallClockIcon} alt="Horário"/>
-                <strong>Das {place.from} às {place.to}</strong>
+                <strong>Das {timeInHourFrom} às {timeInHourTo}</strong>
             </div>
 
             <p>{place.bio}</p>
