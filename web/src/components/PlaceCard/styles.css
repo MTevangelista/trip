@@ -72,8 +72,9 @@
     justify-content: space-between;
 }
 
-.place-card footer a {
+.place-card footer form button {
     padding: 0.5rem;
+    background: var(--color-box-base);
     border: 1px solid var(--color-primary);
     border-radius: 0.8rem;
     cursor: pointer;
@@ -84,7 +85,7 @@
     transition: 0.2s;
 }
 
-.place-card footer a:hover {
+.place-card footer form button:hover {
     opacity: 0.6;
 }
 

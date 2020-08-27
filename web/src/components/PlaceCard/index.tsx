@@ -29,6 +29,17 @@ interface PlaceCardProps {
 const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
     const timeInHourFrom = convertMinutesToHours(place.from)
     const timeInHourTo = convertMinutesToHours(place.to)
+    const completeAddress = `${place.address}, ${place.city} - ${place.uf}`
+
+    const latitude = navigator.geolocation.getCurrentPosition(function(position){
+        return position.coords.latitude
+    })
+
+    const longitude = navigator.geolocation.getCurrentPosition(function(position){
+        return position.coords.latitude
+    })
+
+    const currentUserLocation = `${latitude}, ${longitude}`
 
     return (
         <article className="place-card">
@@ -53,9 +64,10 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
             <p>{place.bio}</p>
 
             <footer>
-                <a>
-                    Calcular rota
-                </a>
+                <form action="https://maps.google.com/maps" method="get" target="_blank">
+                    <input type="hidden" name="saddr" value={currentUserLocation} />
+                    <button type="submit" name="daddr" value={completeAddress}>Calcular rota</button>
+                </form>
                 <a
                     className="whatsapp"
                     target="_blank"
@@ -65,10 +77,6 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
                     <img src={whatsappIcon} alt="WhatsApp" />
                     Entrar em contato
                 </a>
-                {/* <button type="submit">
-                    <img src={whatsappIcon} alt="Whatsapp" />
-                    Entrar em contato
-                </button> */}
             </footer>
         </article>
     )
