@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-   🚧 Plataforma em construção... 🚧
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/VSCode-v1.43.2-blue" />
   <img src="https://img.shields.io/badge/Yarn-v1.22.4-lightblue" />
   <img src="https://img.shields.io/badge/Typescript-v3.7.2-blue" />  
@@ -105,9 +101,12 @@ trip
 │   │    │           ├── PageCard/
 │   │    │           │         ├── index.tsx
 │   │    │           │         └── styles.css      
-│   │    │           └── Select/
-│   │    │                   ├── index.tsx
-│   │    │                   └── styles.css      
+│   │    │           ├── Select/
+│   │    │           │       ├── index.tsx
+│   │    │           │       └── styles.css      
+│   │    │           └── Textarea/ 
+│   │    │                  ├── index.tsx
+│   │    │                  └── styles.css
 │   │    ├── pages/
 │   │    │      ├── Landing/
 │   │    │      │         ├── index.tsx
@@ -115,9 +114,18 @@ trip
 │   │    │      ├── LeisurePoints/
 │   │    │      │              ├── index.tsx
 │   │    │      │              └── styles.css
-│   │    │      └── UtilityPoints/
-│   │    │                    ├── index.tsx
-│   │    │                    └── styles.css
+│   │    │      ├── PlaceCard/
+│   │    │      │          ├── index.tsx
+│   │    │      │          └── styles.css
+│   │    │      └──  UtilityPoints/
+│   │    │                      ├── index.tsx
+│   │    │                      └── styles.css
+│   │    ├── services/
+│   │    │         └── api.ts
+│   │    │ 
+│   │    ├── utils/
+│   │    │      └── convertMinutesToHours.ts
+│   │    │  
 │   │    ├── App.tsx
 │   │    ├── index.tsx
 │   │    ├── react-app-env-ts
@@ -140,7 +148,8 @@ trip
 │   │    ├── repositories/
 │   │    │             └── placesRepository.ts   
 │   │    ├── routes/
-│   │    │       └── place-route.ts
+│   │    │       ├── place-route.ts
+│   │    │       └── index-route.ts
 │   │    ├── utils/
 │   │    │      └── convertHourToMinutes.ts
 │   │    └── server.ts
@@ -169,6 +178,9 @@ $ git clone https://github.com/MTevangelista/trip.git
 ```bash
 # Vá para a pasta do servidor
 $ cd trip/server
+
+# Crie o banco de dados
+$ yarn knex:migrate ou npm run knex:migrate
 
 # Instale as depedencias
 $ yarn install ou npm install
@@ -213,4 +225,3 @@ Contribuições são o que fazem a comunidade open source um lugar incrível par
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=round-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/matheus01/)](https://www.linkedin.com/in/matheus01/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=round-square&logo=Gmail&logoColor=white&link=mailto:matheusevangelistadev@gmail.com)](mailto:matheusevangelistadev@gmail.com)
 [![Instagram Badge](https://img.shields.io/badge/-Instagram-ba164a?style=round-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/_matheusrj/?hl=pt-br)](https://www.instagram.com/_matheusrj/?hl=pt-br)
-
