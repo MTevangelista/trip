@@ -104,6 +104,11 @@
     background: var(--color-secundary-dark);
 }
 
+.disabledCard {
+    pointer-events: none;
+    color: var(--color-text-complement) !important; 
+}
+
 @media (min-width: 700px) {
     #page-place-form {
         max-width: 100vw;

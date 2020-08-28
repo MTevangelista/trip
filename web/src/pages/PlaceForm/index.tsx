@@ -55,12 +55,21 @@ function PlaceForm() {
         })
     }, [selectedUf])
 
-    function addNewScheduleItem() {
-        setScheduleItems([
-            ...scheduleItems,
-            { week_day: 0, from: '', to: '' }
-        ])
-        scheduleItems.push()
+    async function addNewScheduleItem() {
+        if (await scheduleItems.length === 6) {
+            const btnAddNewScheduleItem = document.getElementById('btn_addNewScheduleItem')
+            if (btnAddNewScheduleItem !== null) {
+               await btnAddNewScheduleItem.classList.add("disabledCard");
+            }
+            return
+        } else {
+            setScheduleItems([
+                ...scheduleItems,
+                { week_day: 0, from: '', to: '' }
+            ])
+    
+            scheduleItems.push()
+        }
     }
 
     function setScheduleItemValue(position: number, field: string, value: string) {
@@ -120,30 +129,35 @@ function PlaceForm() {
                         <Input
                             name="name"
                             label="Nome do lugar"
+                            required
                             value={name}
                             onChange={event => setName(event.target.value)}
                         />
                         <Input
                             name="image_url"
                             label="Image (URL)"
+                            required
                             value={image_url}
                             onChange={event => setImageUrl(event.target.value)}
                         />
                         <Input
                             name="address"
                             label="Endereço"
+                            required
                             value={address}
                             onChange={event => setAddress(event.target.value)}
                         />
                         <Input
                             name="whatsapp"
                             label="WhatsApp"
+                            required
                             value={whatsapp}
                             onChange={event => setWhatsapp(event.target.value)}
                         />
                         <Textarea
                             name="bio"
                             label="Biografia"
+                            required
                             value={bio}
                             onChange={event => setBio(event.target.value)}
                         />
@@ -155,6 +169,7 @@ function PlaceForm() {
                         <Select
                             name="uf"
                             label="Estado (UF)"
+                            required
                             value={selectedUf}
                             onChange={event => setSelectedUf(event.target.value)}
                             options={ufs.map(uf => (
@@ -164,6 +179,7 @@ function PlaceForm() {
                         <Select
                             name="city"
                             label="Cidade"
+                            required
                             value={selectedCity}
                             onChange={event => setSelectedCity(event.target.value)}
                             options={cities.map(city => (
@@ -173,6 +189,7 @@ function PlaceForm() {
                         <Select
                             name="place"
                             label="Lugar"
+                            required
                             value={place}
                             onChange={event => setPlace(event.target.value)}
                             options={[
@@ -191,7 +208,7 @@ function PlaceForm() {
                     <fieldset>
                         <legend>
                             Horários disponíveis
-                        <button type="button" onClick={addNewScheduleItem}>+ Novo horário</button>
+                        <button id="btn_addNewScheduleItem" type="button" onClick={addNewScheduleItem}>+ Novo horário</button>
                         </legend>
 
                         {scheduleItems.map((scheduleItem, index) => {
@@ -200,6 +217,7 @@ function PlaceForm() {
                                     <Select
                                         name="week-day"
                                         label="Dia da semana"
+                                        required
                                         value={scheduleItem.week_day}
                                         onChange={event => setScheduleItemValue(index, 'week_day', event.target.value)}
                                         options={[
@@ -216,6 +234,7 @@ function PlaceForm() {
                                         type="time"
                                         name="from"
                                         label="Das"
+                                        required
                                         value={scheduleItem.from}
                                         onChange={event => setScheduleItemValue(index, 'from', event.target.value)}
                                     />
@@ -223,6 +242,7 @@ function PlaceForm() {
                                         type="time"
                                         name="to"
                                         label="Até"
+                                        required
                                         value={scheduleItem.to}
                                         onChange={event => setScheduleItemValue(index, 'to', event.target.value)}
                                     />

@@ -73,6 +73,7 @@ const UtilityPoints: React.FC = () => {
                     <Select
                         name="uf"
                         label="Estado (UF)"
+                        required
                         value={selectedUf}
                         onChange={event => setSelectedUf(event.target.value)}
                         options={ufs.map(uf => (
@@ -82,6 +83,7 @@ const UtilityPoints: React.FC = () => {
                     <Select
                         name="city"
                         label="Cidade"
+                        required
                         value={selectedCity}
                         onChange={event => setSelectedCity(event.target.value)}
                         options={cities.map(city => (
@@ -91,6 +93,7 @@ const UtilityPoints: React.FC = () => {
                     <Select
                         name="place"
                         label="Lugar"
+                        required
                         value={place}
                         onChange={event => setPlace(event.target.value)}
                         options={[
@@ -103,6 +106,7 @@ const UtilityPoints: React.FC = () => {
                     <Select
                         name="week_day"
                         label="Dia da semana"
+                        required
                         value={week_day}
                         onChange={event => setWeekDay(event.target.value)}
                         options={[
@@ -119,6 +123,7 @@ const UtilityPoints: React.FC = () => {
                         type="time"
                         name="time"
                         label="Hora"
+                        required
                         value={time}
                         onChange={event => setTime(event.target.value)}
                     />
