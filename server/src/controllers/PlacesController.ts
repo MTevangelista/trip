@@ -18,7 +18,7 @@ export default class PlacesController {
         const filters = req.query
 
         if (!filters.uf || !filters.city || !filters.week_day || !filters.place || !filters.time) {
-            res.status(400).json({
+            return res.status(400).json({
                 error: 'Missing filters to search places'
             })
         }
