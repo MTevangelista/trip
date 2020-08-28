@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
@@ -73,7 +74,7 @@ function PlaceForm() {
         setScheduleItems(updatedScheduleItems)
     }
 
-    function handleCreatePlace(event: FormEvent) { 
+    function handleCreatePlace(event: FormEvent) {
         event.preventDefault()
 
         api.post('/places', {
@@ -87,9 +88,19 @@ function PlaceForm() {
             city: selectedCity,
             schedule: scheduleItems
         }).then(() => {
-            alert('Cadastro realizado com sucesso!')
+            Swal.fire({
+                icon: 'success',
+                title: 'Cadastro realizado com sucesso!',
+                showConfirmButton: false,
+                timer: 1700
+            })
         }).catch(() => {
-            alert('Erro no cadastro')
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro no cadastro!',
+                showConfirmButton: false,
+                timer: 1700
+            })
         })
     }
 
