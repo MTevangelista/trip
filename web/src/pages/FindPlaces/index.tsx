@@ -18,7 +18,7 @@ interface IBGECityResponse {
     nome: string
 }
 
-const LeisurePoints: React.FC = () => {
+const FindPlaces: React.FC = () => {
     const [places, setPlaces] = useState([])
 
     const [ufs, setUfs] = useState<string[]>([])
@@ -65,9 +65,9 @@ const LeisurePoints: React.FC = () => {
     }
 
     return (  
-        <div id="page-leisure-points" className="container">
+        <div id="page-find-places" className="container">
             <PageHeader pageTitle="Pontos de Lazer" title="Lugares encontrados">
-                <form id="search-leisure-places" onSubmit={searchPlaces}>
+                <form id="search-places" onSubmit={searchPlaces}>
                     <Select
                         name="uf"
                         label="Estado (UF)"
@@ -99,6 +99,10 @@ const LeisurePoints: React.FC = () => {
                             { value: 'Praias', label: 'Praias' },
                             { value: 'Pontos turísticos', label: 'Pontos turísticos' },
                             { value: 'Onde comer', label: 'Onde comer' },
+                            { value: 'Banheiros', label: 'Banheiros' },
+                            { value: 'Delegacias', label: 'Delegacias' },
+                            { value: 'Hospitais', label: 'Hospitais' },
+                            { value: 'Onde dormir', label: 'Onde dormir' },
                         ]}
                     />
                     <Select
@@ -140,4 +144,4 @@ const LeisurePoints: React.FC = () => {
     )
 }
 
-export default LeisurePoints
+export default FindPlaces

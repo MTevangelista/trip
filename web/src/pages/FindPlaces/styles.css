@@ -1,17 +1,17 @@
-#page-leisure-points {
+#page-find-places{
     width: 100vw;
     height: 100vh;
 }
 
-#search-leisure-places {
+#search-places {
     margin-top: 3.2rem;
 }
 
-#search-leisure-places label {
+#search-places label {
     color: var(--color-text-in-primary);
 }
 
-#search-leisure-places button {
+#search-places button {
     width: 100%;
     height: 5.6rem;
     background: var(--color-secundary);
@@ -29,21 +29,21 @@
     outline: none;
 }
 
-#search-leisure-places button:hover {
+#search-places button:hover {
     background: var(--color-secundary-dark);
 }
 
-#page-leisure-points main {
+#page-find-places main {
     margin: 3.2rem auto;
     width: 90%;
 }
 
 @media (min-width: 700px) {
-    #page-leisure-points {
+    #page-find-places {
         max-width: 100%;
     }
 
-    #search-leisure-places {
+    #search-places {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         column-gap: 12px;
@@ -51,12 +51,12 @@
         bottom: -28px;
     }
 
-    #search-leisure-places .input-block+.input-block,
-    #search-leisure-places .select-block+.select-block {
+    #search-places .input-block+.input-block,
+    #search-places .select-block+.select-block {
         margin-top: 0;
     }
 
-    #page-leisure-points main {
+    #page-find-places main {
         padding: 3.2rem 0;
         max-width: 740px;
         margin: 0 auto;

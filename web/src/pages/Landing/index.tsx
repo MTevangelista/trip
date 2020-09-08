@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import logoImg from '../../assets/images/logo.png'
 import locationIcon from '../../assets/images/icons/location.svg'
+import AddPlaceIcon from '../../assets/images/icons/icons-add.svg'
 
 import './styles.css'
 
@@ -20,20 +21,16 @@ function Landing() {
                 <h2>Seja bem-vindo.</h2>
                 <h3>O que deseja fazer?</h3>
                 <div className="buttons-container">
-                    <Link to="leisure-points" className="leisure-points">
-                        <img src={locationIcon} alt="Pontos de lazer" />
-                        <p>Encontrar pontos de lazer</p>
+                    <Link to="find-places" className="find-places">
+                        <img src={locationIcon} alt="Lugares" />
+                        <p>Encontrar lugares</p>
                     </Link>
 
-                    <Link to="utility-points" className="utility-points">
-                        <img src={locationIcon} alt="Pontos de utilidades" />
-                        <p>Encontrar pontos de utilidades</p>
+                    <Link to="register-place" className="register-place">
+                        <img src={AddPlaceIcon} alt="Lugares" />
+                        <p>Cadastrar um lugar</p>
                     </Link>
                 </div>
-
-                <Link to="register-place" className="register-place">
-                    <p>Cadastrar um lugar</p>
-                </Link>
             </div>
         </div>
     )
