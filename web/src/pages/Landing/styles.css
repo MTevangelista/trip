@@ -82,20 +82,14 @@
     margin: 3rem 1rem 0 1rem;
 }
 
+.buttons-container a.utility-points,
 .buttons-container a.leisure-points {
-    background: var(--color-primary-lighter);
-}
-
-.buttons-container a.utility-points {
-    background: var(--color-secundary);
-}
-
-.buttons-container a.leisure-points:hover {
     background: var(--color-primary-light);
 }
 
-.buttons-container a.utility-points:hover {
-    background: var(--color-secundary-dark);
+.buttons-container a.utility-points:hover,
+.buttons-container a.leisure-points:hover {
+    background: var(--color-primary-lighter);
 }
 
 .register-place {
