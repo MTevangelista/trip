@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -22,6 +23,8 @@ interface IBGECityResponse {
 }
 
 function PlaceForm() {
+    const history = useHistory()
+
     const [ufs, setUfs] = useState<string[]>([])
     const [cities, setCities] = useState<string[]>([])
     const [selectedUf, setSelectedUf] = useState('')
@@ -103,6 +106,7 @@ function PlaceForm() {
                 showConfirmButton: false,
                 timer: 1700
             })
+            history.push('/')
         }).catch(() => {
             Swal.fire({
                 icon: 'error',
