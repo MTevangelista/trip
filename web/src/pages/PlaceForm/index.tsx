@@ -59,7 +59,7 @@ function PlaceForm() {
     }, [selectedUf])
 
     async function addNewScheduleItem() {
-        if (await scheduleItems.length === 6) {
+        if (await scheduleItems.length >= 5) {
             const btnAddNewScheduleItem = document.getElementById('btn_addNewScheduleItem')
             if (btnAddNewScheduleItem !== null) {
                await btnAddNewScheduleItem.classList.add("disabledCard");
@@ -106,7 +106,7 @@ function PlaceForm() {
                 showConfirmButton: false,
                 timer: 1700
             })
-            history.push('/')
+            // history.push('/')
         }).catch(() => {
             Swal.fire({
                 icon: 'error',

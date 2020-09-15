@@ -29,6 +29,13 @@ const FindPlaces: React.FC = () => {
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('')
 
+    // Loads all the places of api
+    useEffect(() => {
+        api.get('/').then(response => {
+            setPlaces(response.data)
+        })
+    }, [])
+
     // Loads the IBGE API UFS
     useEffect(() => {
         axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
@@ -64,7 +71,7 @@ const FindPlaces: React.FC = () => {
         setPlaces(response.data)
     }
 
-    return (  
+    return (
         <div id="page-find-places" className="container">
             <PageHeader pageTitle="Pontos de Lazer" title="Lugares encontrados">
                 <form id="search-places" onSubmit={searchPlaces}>
