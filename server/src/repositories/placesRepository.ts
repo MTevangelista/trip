@@ -19,8 +19,8 @@ interface FiltersItem {
 exports.index = async() => {
     const places = await db('places')
         .join('place_schedule', 'places.id', '=', 'place_schedule.place_id')
-        .select('places.*', 'place_schedule.week_day', 'place_schedule.from', 'place_schedule.to')
-    
+        .where('place_schedule.week_day', '=', 1)
+        .select('places.*', 'place_schedule.from', 'place_schedule.to')
     return places
 }
 

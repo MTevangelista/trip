@@ -6,7 +6,7 @@ export default class PlacesController {
     async index(req: Request, res: Response) {
         try {
             let index = await repository.index()
-            return res.json({index})
+            return res.json(index)
         } catch (e) {
             return res.status(400).json({
                 error: 'Unexpected error while listing all places'
