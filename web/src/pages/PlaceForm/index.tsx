@@ -1,5 +1,4 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
@@ -23,8 +22,6 @@ interface IBGECityResponse {
 }
 
 function PlaceForm() {
-    const history = useHistory()
-
     const [ufs, setUfs] = useState<string[]>([])
     const [cities, setCities] = useState<string[]>([])
     const [selectedUf, setSelectedUf] = useState('')
@@ -59,20 +56,11 @@ function PlaceForm() {
     }, [selectedUf])
 
     async function addNewScheduleItem() {
-        if (await scheduleItems.length >= 5) {
-            const btnAddNewScheduleItem = document.getElementById('btn_addNewScheduleItem')
-            if (btnAddNewScheduleItem !== null) {
-               await btnAddNewScheduleItem.classList.add("disabledCard");
-            }
-            return
-        } else {
-            setScheduleItems([
-                ...scheduleItems,
-                { week_day: 0, from: '', to: '' }
-            ])
-    
-            scheduleItems.push()
-        }
+        setScheduleItems([
+            ...scheduleItems,
+            { week_day: 0, from: '', to: '' }
+        ])
+        scheduleItems.push()
     }
 
     function setScheduleItemValue(position: number, field: string, value: string) {
@@ -106,7 +94,6 @@ function PlaceForm() {
                 showConfirmButton: false,
                 timer: 1700
             })
-            // history.push('/')
         }).catch(() => {
             Swal.fire({
                 icon: 'error',
