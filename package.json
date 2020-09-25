@@ -1,16 +1,39 @@
 {
-  "name": "trip",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/MTevangelista/trip.git",
+  "name": "trip-web",
+  "version": "0.1.0",
+  "repository": "https://github.com/MTevangelista/trip-web.git",
   "author": "Matheus Evangelista <matheusevangelistadev@gmail.com>",
-  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "axios": "^0.20.0",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "sweetalert2": "^9.17.1",
+    "typescript": "~3.7.2"
+  },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.5",
     "commitizen": "4.1.2",
     "cz-conventional-changelog": "3.2.0",
     "husky": "^4.2.5",
@@ -20,5 +43,20 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

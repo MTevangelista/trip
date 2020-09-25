@@ -77,7 +77,7 @@ function PlaceForm() {
     function handleCreatePlace(event: FormEvent) {
         event.preventDefault()
 
-        api.post('/places', {
+        api.post('/api/place', {
             name,
             image_url,
             place,

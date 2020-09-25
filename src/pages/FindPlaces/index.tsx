@@ -31,7 +31,7 @@ const FindPlaces: React.FC = () => {
 
     // Loads all the places of api
     useEffect(() => {
-        api.get('/').then(response => {
+        api.get('/api/place').then(response => {
             setPlaces(response.data)
         })
     }, [])
@@ -58,7 +58,7 @@ const FindPlaces: React.FC = () => {
     async function searchPlaces(event: FormEvent) {
         event.preventDefault()
 
-        const response = await api.get('places', {
+        const response = await api.get('api/place/filter', {
             params: {
                 uf: selectedUf,
                 city: selectedCity,
